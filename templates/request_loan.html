@@ -1,0 +1,27 @@
+<!-- templates/request_loan.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Request a Loan</h2>
+    <form method="POST" action="{{ url_for('request_loan') }}">
+        <div class="form-group">
+            <label for="amount">Loan Amount (₦)</label>
+            <input type="number" id="amount" name="amount" min="1" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="interest_rate">Interest Rate (%)</label>
+            <input type="number" id="interest_rate" name="interest_rate" min="1" step="0.1" required>
+        </div>
+        <div class="form-group">
+            <label for="duration_months">Duration (Months)</label>
+            <input type="number" id="duration_months" name="duration_months" min="1" max="60" required>
+        </div>
+        <div class="form-group">
+            <label for="purpose">Loan Purpose</label>
+            <textarea id="purpose" name="purpose" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Loan Request</button>
+    </form>
+</div>
+{% endblock %}

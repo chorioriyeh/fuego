@@ -1,0 +1,36 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Fuego</h1>
+        <h2>Peer-to-Peer Lending Platform</h2>
+        <p>FUEGO connects people who want to lend and borrow directly, No banks, No middlemen. 
+       Lend money securely to others and earn attractive returns on your loans through interest. 
+       Whether you're growing your savings or seeking new opportunities, FUEGO empowers you to do it smarter.</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('signup') }}" class="btn btn-secondary"><button>Get Started</button></a>
+            <a href="{{ url_for('login') }}" class="btn btn-secondary"><button>Login</button></a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <!-- Placeholder for hero image -->
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <h3>Request Loans</h3>
+        <p>Get access to funds at competitive interest rates for your needs.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Fund Loans</h3>
+        <p>Earn returns by funding borrowers directly without intermediaries.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Secure Transactions</h3>
+        <p>All transactions are secured through Paystack payment gateway.</p>
+    </div>
+</section>
+{% endblock %}

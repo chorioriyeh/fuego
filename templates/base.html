@@ -1,0 +1,55 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuego - P2P Lending Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Fuego</h1>
+        </div>
+        <nav>
+            {% if 'user_id' in session %}
+            <ul>
+                <li><a href="{{ url_for('dashboard') }}"><button>Dashboard</button></a></li>
+                <li><a href="{{ url_for('request_loan') }}"><button>Request Loan</button></a></li>
+                <li><a href="{{ url_for('transactions') }}"><button>Transactions</button></a></li>
+                <li><a href="{{ url_for('deposit') }}"><button>Deposit</button></a></li>
+                <li><a href="{{ url_for('withdraw') }}"><button>Withdraw</button></a></li>
+                <li><a href="{{ url_for('logout') }}"><button>Logout</button></a></li>
+            </ul>
+            {% else %}
+            <ul>
+                <li><a href="{{ url_for('login') }}"><button>Login</button></a></li>
+                <li><a href="{{ url_for('signup') }}"><button>Sign Up</button></a></li>
+            </ul>
+            {% endif %}
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Fuego P2P Lending Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>

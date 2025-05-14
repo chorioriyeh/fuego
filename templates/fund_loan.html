@@ -1,0 +1,23 @@
+<!-- templates/fund_loan.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Fund This Loan</h2>
+    <div class="loan-summary">
+        <h3>Loan Details</h3>
+        <p><strong>Amount:</strong> ₦{{ "%.2f"|format(loan.amount) }}</p>
+        <p><strong>Interest Rate:</strong> {{ loan.interest_rate }}%</p>
+        <p><strong>Duration:</strong> {{ loan.duration_months }} months</p>
+        <p><strong>Purpose:</strong> {{ loan.purpose }}</p>
+        <p><strong>Requested by:</strong> {{ loan.requester.username }}</p>
+        <p><strong>Date Requested:</strong> {{ loan.created_at.strftime('%Y-%m-%d') }}</p>
+    </div>
+    
+    <form method="POST" action="{{ url_for('fund_loan', loan_id=loan.id) }}">
+        <p class="confirmation-text">Are you sure you want to fund this loan for ₦{{ "%.2f"|format(loan.amount) }}?</p>
+        <button type="submit" class="btn btn-primary">Confirm Funding</button>
+        <a href="{{ url_for('dashboard') }}" style="color: black;" ><button class="btn btn-primary">Cancel</button></a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+<!-- templates/deposit.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Deposit Funds</h2>
+    <form method="POST" action="{{ url_for('deposit') }}">
+        <div class="form-group">
+            <label for="amount">Amount (₦)</label>
+            <input type="number" id="amount" name="amount" min="1" step="0.01" required>
+        </div>
+        <button type="submit" class="btn btn-primary" id="paystack-button">Deposit with Paystack</button>
+    </form>
+    
+    <script>
+        // In a real app, this would integrate with Paystack's payment popup
+        document.getElementById('paystack-button').addEventListener('click', function(e) {
+            // Prevent the form from submitting normally
+            e.preventDefault();
+            
+            // Get the amount
+            var amount = document.getElementById('amount').value;
+            
+            // Submit the form programmatically, but in a real app would use Paystack's API
+            this.form.submit();
+        });
+    </script>
+</div>
+{% endblock %}
